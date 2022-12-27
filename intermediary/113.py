@@ -1,5 +1,5 @@
 # reduce - faz a recucao de um iteravel em um  valor
-from itertools import reduce
+from functools import reduce
 
 produtos = [
     {'nome': 'Produto 5', 'preco': 10.00},
@@ -9,9 +9,21 @@ produtos = [
     {'nome': 'Produto 4', 'preco': 69.90},
 ]
 
-total = 0
-for p in produtos:
-    total +=p['preco']
+
+def funcao_do_reduce(acumulador,produto):
+    print('acumulador', acumulador)
+    print('produto', produto)
+    print()
+    return  acumulador + produto['preco']
+
+
+total = reduce(funcao_do_reduce,
+        produtos,
+        0
+    )
+# total = 0
+# for p in produtos:
+#     total +=p['preco']
     
 
-print(total)
+print('total e',total)
